@@ -5,8 +5,6 @@ import com.leejun.app.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IndexController {
@@ -25,9 +23,8 @@ public class IndexController {
         return "index";
     }
 
-    @PostMapping("/add")
+    @GetMapping("/add")
     public String showAddForm(Student student){
-        studentRepository.save(student);
-        return "redirect:/";
+        return "add-student";
     }
 }
