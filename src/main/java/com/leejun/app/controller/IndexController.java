@@ -22,4 +22,10 @@ public class IndexController {
         model.addAttribute("students", students);
         return "index";
     }
+
+    @GetMapping("/add")
+    public String showAddForm(Student student){
+        studentRepository.save(student);
+        return "redirect:/";
+    }
 }
