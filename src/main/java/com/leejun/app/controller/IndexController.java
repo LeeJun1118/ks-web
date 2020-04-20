@@ -42,4 +42,18 @@ public class IndexController {
         model.addAttribute("student",student);
         return "update-student";
     }
+
+    @PostMapping("/update/{id}")
+    public String updateStudent(Student student){
+        studentRepository.save(student);
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable("id") Long id,Model model){
+        Student student = studentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Invalid student Id:"+id));
+        studentRepository.delete(student);
+        model.addAttribute("students",studentRepository.findAll());
+        return "redirect:/";
+    }
 }
