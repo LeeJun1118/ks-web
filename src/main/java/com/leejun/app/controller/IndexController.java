@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IndexController {
-    private final StudentRepository studentRepository;
+    @GetMapping("/")
+    public String index(){
+        return "resume";
+    }
+   /* private final StudentRepository studentRepository;
 
     public IndexController(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -55,5 +59,5 @@ public class IndexController {
         studentRepository.delete(student);
         model.addAttribute("students",studentRepository.findAll());
         return "redirect:/";
-    }
+    }*/
 }
