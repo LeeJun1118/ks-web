@@ -40,7 +40,7 @@ public class AppApplication implements CommandLineRunner {
 		skillRepository.save(new Skill("C",60));
 		skillRepository.save(new Skill("C++",50));
 
-		workRepository.save(new Work("Backend","실리콘 벨리","2021.04.01 ~ ","가자 가자!"));
+		workRepository.save(new Work("Backend","실리콘 벨리","2021.04.01 ~ 2025.03.15 ","가자 가자!"));
 		workRepository.save(new Work("Backend","Line","2025.04.01 ~ ","평생 직장"));
 	}
 }
