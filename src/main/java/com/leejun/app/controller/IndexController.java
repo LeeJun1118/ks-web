@@ -1,19 +1,26 @@
 package com.leejun.app.controller;
 
-import com.leejun.app.domain.Student;
-import com.leejun.app.repository.StudentRepository;
+import com.leejun.app.domain.Person;
+import com.leejun.app.repository.PersonRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IndexController {
+    private final PersonRepository personRepository;
+
+    public IndexController(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
     @GetMapping("/")
-    public String index(){
+    public String index(Model model){
+        Person person = personRepository.findAll().stream().findFirst().orElse(null);
+        model.addAttribute("person",person);
         return "resume";
     }
+
    /* private final StudentRepository studentRepository;
 
     public IndexController(StudentRepository studentRepository) {
