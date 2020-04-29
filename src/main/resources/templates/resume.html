@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Responsive Resume Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js"></script>
+    <link id="theme-style" rel="stylesheet" href="/css/pillar-3.css">
+
+    <title>Resume | ks.ac.kr</title>
+</head>
+
+<body>
+
+<article class="resume-wrapper text-center position-relative">
+    <div class="resume-wrapper-inner mx-auto text-left bg-white shadow-lg">
+        <!-- 상단 정보 시작-->
+        <header class="resume-header pt-4 pt-md-0">
+            <div class="media flex-column flex-md-row">
+                <img class="mr-3 img-fluid picture mx-auto" src="/images/profile.jpg" alt="">
+                <div class="media-body p-4 d-flex flex-column flex-md-row mx-auto mx-lg-0">
+					<!-- Person 객체 -->
+                    <div class="primary-info">
+                        <h1 class="name mt-0 mb-1 text-white text-uppercase text-uppercase" th:text="${person?.name}">홍길동</h1>
+                        <div class="title mb-3" th:text="${person?.job}">OOO 개발자</div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#">
+                                <i class="far fa-envelope fa-fw mr-2" data-fa-transform="grow-3"></i><span th:text="${person?.email}">hgd@gd.com</span></a>
+                            </li>
+                            <li>
+								<a href="#">
+									<i class="fas fa-mobile-alt fa-fw mr-2" data-fa-transform="grow-6"></i><span th:text="${person?.phoneNo}">010-0000-0000</span>
+								</a>
+							</li>
+                        </ul>
+                    </div><!--// Person 객체 종료-->
+					<!-- SNS 객체 -->
+                    <div class="secondary-info ml-md-auto mt-2">
+                        <ul class="resume-social list-unstyled">
+                            <li class="mb-3">
+                                <a href="#">
+                                    <span class="fa-container text-center mr-2"><i class="fab fa-github-alt fa-fw"></i></span>
+                                    <span th:text="|github.com/${socialMedia?.github}|">github.com/username</span>
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#">
+                                    <span class="fa-container text-center mr-2"><i class="fab fa-twitter fa-fw"></i></span>
+                                    <span th:text="|twitter.com/${socialMedia?.twitter}|">twitter.com/stevedoe</span>
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#">
+                                    <span class="fa-container text-center mr-2"><i class="fab fa-instagram fa-fw"></i></span>
+                                    <span th:text="|instagram.com/${socialMedia?.instagram}|">instagram.com/username/</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-container text-center mr-2"><i class="fab fa-facebook-f"></i></span>
+                                    <span th:text="|facebook.com/${socialMedia?.facebook}|">facebook.com</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--// SNS 객체 종료-->
+                </div>
+            </div>
+        </header><!--// 상단 정보 종료-->
+        <div class="resume-body p-5">
+            <section class="resume-section summary-section mb-5"><!--//CAREER SUMMARY 시작-->
+                <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Career Summary</h2>
+                <div class="resume-section-content">
+                    <p class="mb-0">모든 국민은 신속한 재판을 받을 권리를 가진다. 형사피고인은 상당한 이유가 없는 한 지체없이 공개재판을 받을 권리를 가진다.
+                        대통령이 임시회의 집회를 요구할 때에는 기간과 집회요구의 이유를 명시하여야 한다. 법률이 정하는 주요방위산업체에 종사하는 근로자의 단체행동권은
+                        법률이 정하는 바에 의하여 이를 제한하거나 인정하지 아니할 수 있다. 모든 국민은 법률이 정하는 바에 의하여 국가기관에 문서로 청원할 권리를 가진다.
+                        제1항의 탄핵소추는 국회재적의원 3분의 1 이상의 발의가 있어야 하며, 그 의결은 국회재적의원 과반수의 찬성이 있어야 한다. 다만, 대통령에 대한
+                        탄핵소추는 국회재적의원 과반수의 발의와 국회재적의원 3분의 2 이상의 찬성이 있어야 한다.
+                    </p>
+                </div>
+            </section><!--//CAREER SUMMARY 종료-->
+            <div class="row">
+                <div class="col-lg-9">
+                    <section class="resume-section experience-section mb-5">
+                        <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Work Experience</h2>
+                        <div class="resume-section-content">
+                            <div class="resume-timeline position-relative">
+                                <article class="resume-timeline-item position-relative pb-5" th:each="work : ${works}">
+                                    <div class="resume-timeline-item-header mb-2">
+                                        <div class="d-flex flex-column flex-md-row">
+                                            <h3 class="resume-position-title font-weight-bold mb-1" th:text="${work.position}">Lead Developer</h3>
+                                            <div class="resume-company-name ml-auto" th:text="${work.company}">Startup Hub</div>
+                                        </div>
+                                        <div class="resume-position-time" th:text="${work.time}">2018 - Present</div>
+                                    </div><!--//resume-timeline-item-header-->
+                                    <div class="resume-timeline-item-desc">
+                                        <p th:text="${work.desc}">Role description goes here ipsum dolor sit amet, consectetuer adipiscing
+                                            elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
+                                            quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede
+                                            justo, fringilla vel.</p>
+                                    </div><!--//resume-timeline-item-desc-->
+
+                                </article><!--//resume-timeline-item-->
+                            </div><!--//resume-timeline-->
+
+
+                        </div>
+                    </section><!--//WORK EXPERIENCE 시작-->
+                </div>
+                <div class="col-lg-3"><!-- 우측 정보 시작 -->
+                    <section class="resume-section skills-section mb-5">
+                        <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Skills &amp; Tools</h2>
+                        <div class="resume-section-content">
+                            <div class="resume-skill-item">
+                                <h4 class="resume-skills-cat font-weight-bold" th:text="${person?.job}">Backend</h4>
+                                <ul class="list-unstyled mb-4" th:each="skill : ${skills}">
+                                    <li class="mb-2">
+                                        <div class="resume-skill-name" th:text="${skill.name}">Angular</div>
+                                        <div class="progress resume-progress">
+                                            <div class="progress-bar theme-progress-bar-dark" role="progressbar"
+                                                 th:attr="style=${'width: ' + skill.grade + '%'}" aria-valuenow=0 aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section><!--//skills-section-->
+                    <section class="resume-section language-section mb-5">
+                        <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Language</h2>
+                        <div class="resume-section-content">
+                            <ul class="list-unstyled resume-lang-list" th:each="language : ${languages}">
+                                <li class="mb-2">
+                                    <span class="resume-lang-name font-weight-bold" th:text="${language.name}">English</span>
+                                    <small class="text-muted font-weight-normal" th:text="${language.grade}">(Native)</small>
+                                </li>
+<!--                                <li class="mb-2 align-middle">-->
+<!--                                    <span class="resume-lang-name font-weight-bold">French</span> -->
+<!--                                    <small class="text-muted font-weight-normal">(Professional)</small>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <span class="resume-lang-name font-weight-bold">Spanish</span> -->
+<!--                                    <small class="text-muted font-weight-normal">(Professional)</small>-->
+<!--                                </li>-->
+                            </ul>
+                        </div>
+                    </section><!--//language-section-->
+                    <section class="resume-section interests-section mb-5">
+                        <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Interests</h2>
+                        <div class="resume-section-content">
+                            <ul class="list-unstyled" th:each="interest : ${interests}">
+                                <li class="mb-1" th:text="${interest.name}">Climbing</li>
+                            </ul>
+                        </div>
+                    </section><!--//interests-section-->
+                </div><!-- 우측 정보 종료 -->
+            </div>
+        </div>
+    </div>
+</article>
+
+<footer class="footer text-center pt-2 pb-5">
+    <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+    <small class="copyright">Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+</footer>
+
+</body>
+</html> 
+
