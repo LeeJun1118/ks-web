@@ -12,12 +12,10 @@ public class SocialMedia {
     private Long id;
 
     private String github;
-
     private String twitter;
+    private String instagram;
+    private String facebook;
 
-    private  String instagram;
-
-    private  String facebook;
 
     public SocialMedia() {
     }
