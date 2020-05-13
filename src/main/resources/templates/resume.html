@@ -43,25 +43,25 @@
 					<!-- SNS 객체 -->
                     <div class="secondary-info ml-md-auto mt-2">
                         <ul class="resume-social list-unstyled">
-                            <li class="mb-3">
+                            <li th:if="${!#strings.isEmpty(socialMedia.github)}"class="mb-3">
                                 <a href="#">
                                     <span class="fa-container text-center mr-2"><i class="fab fa-github-alt fa-fw"></i></span>
                                     <span th:text="|github.com/${socialMedia?.github}|">github.com/username</span>
                                 </a>
                             </li>
-                            <li class="mb-3">
+                            <li th:if="${!#strings.isEmpty(socialMedia.twitter)}" class="mb-3">
                                 <a href="#">
                                     <span class="fa-container text-center mr-2"><i class="fab fa-twitter fa-fw"></i></span>
                                     <span th:text="|twitter.com/${socialMedia?.twitter}|">twitter.com/stevedoe</span>
                                 </a>
                             </li>
-                            <li class="mb-3">
+                            <li th:if="${!#strings.isEmpty(socialMedia.instagram)}" class="mb-3">
                                 <a href="#">
                                     <span class="fa-container text-center mr-2"><i class="fab fa-instagram fa-fw"></i></span>
                                     <span th:text="|instagram.com/${socialMedia?.instagram}|">instagram.com/username/</span>
                                 </a>
                             </li>
-                            <li>
+                            <li th:if="${!#strings.isEmpty(socialMedia.facebook)}">
                                 <a href="#">
                                     <span class="fa-container text-center mr-2"><i class="fab fa-facebook-f"></i></span>
                                     <span th:text="|facebook.com/${socialMedia?.facebook}|">facebook.com</span>
