@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.leejun.app.domain.Student;
 import com.leejun.app.domain.StudentDto;
 import com.leejun.app.domain.StudentStatus;
+import com.leejun.app.repository.StudentRepository;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class StudentControllerTests {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private StudentRepository studentRepository;
+
     StudentDto studentDto = StudentDto.builder()
             .name("홍길동")
             .email("hong@test.com")
@@ -40,9 +44,9 @@ public class StudentControllerTests {
         mockMvc.perform(post("/api/students")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaTypes.HAL_JSON)
-                .content(objectMapper.writeValueAsString(studentDto))
-        )
-                .andDo(print())
+                .content(objectMapper.writeValueAsString(studentDto)))
+
+                //.andDo(print())
                 .andExpect(status().isCreated());
     }
 
@@ -52,8 +56,8 @@ public class StudentControllerTests {
         mockMvc.perform(post("/api/students")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaTypes.HAL_JSON)
-                .content(objectMapper.writeValueAsString(studentDto))
-        )
+                .content(objectMapper.writeValueAsString(studentDto)))
+
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("id").exists())
                 .andExpect(jsonPath("name").exists())
@@ -69,8 +73,9 @@ public class StudentControllerTests {
         mockMvc.perform(post("/api/students")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaTypes.HAL_JSON)
-                .content(objectMapper.writeValueAsString(studentDto))
-        )
+                .content(objectMapper.writeValueAsString(studentDto)))
+
+                .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(header().exists("Location"))
                 .andExpect(jsonPath("id").exists())
@@ -86,8 +91,8 @@ public class StudentControllerTests {
         mockMvc.perform(post("/api/students")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaTypes.HAL_JSON)
-                .content(objectMapper.writeValueAsString(studentDto))
-        )
+                .content(objectMapper.writeValueAsString(studentDto)))
+
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(header().exists("Location"))
@@ -101,6 +106,7 @@ public class StudentControllerTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaTypes.HAL_JSON)
                 .content(objectMapper.writeValueAsString(studentDto)))
+
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("id").exists());
@@ -168,7 +174,5 @@ public class StudentControllerTests {
                 //만들면 읽을 수 있는 url이 있는데 그걸 여기 담아준다.
                 .andExpect(jsonPath("_links.self").exists())
                 .andExpect(jsonPath("_links.query-student").exists());
-
-
     }
 }
